@@ -28,13 +28,29 @@ class DurationExercise extends React.Component {
     }
     //The <p>Duration: </p> code follows the tutorial in the source linked at the top of the file. I used it to help format my seconds to show double digits
     render() {
+        const headStyle = {
+            color: "white",
+            borderStyle: "solid",
+            borderWidth: "5px",
+            borderColor: "#90e0ef",
+            width: "fit-content",
+            padding: "5px",
+            backgroundColor: "#fec5bb"
+          }
+      
+          const buttonStyle ={
+            backgroundColor: "#90e0ef",
+            color: "white",
+            borderColor: "#fec5bb"
+          }
+
         const { minutes, seconds } = this.state
         return (
             <>
-                <h2>{this.state.value}</h2>
-                <p>Duration: {minutes} : {seconds < 10 ? `0${seconds}` : seconds}</p>
-                <button onClick={() => this.startTimer()}>Start</button>
-                <button onClick={() => this.stopTimer()}>Reset</button>
+                <h2 style={headStyle}>{this.state.value}</h2>
+                <p style={buttonStyle}>Duration: {minutes} : {seconds < 10 ? `0${seconds}` : seconds}</p>
+                <button style={buttonStyle} onClick={() => this.startTimer()}>Start</button>
+                <button style={buttonStyle} onClick={() => this.stopTimer()}>Reset</button>
             </>
         )
     }

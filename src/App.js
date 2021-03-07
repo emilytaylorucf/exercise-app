@@ -18,6 +18,21 @@ class MenuScreen extends React.Component {
     this.state = { currentScreen: MENU, selectedItem: undefined }
   }
   render() {
+    const headStyle = {
+      color: "white",
+      borderStyle: "solid",
+      borderWidth: "5px",
+      borderColor: "#90e0ef",
+      padding: "5px",
+      backgroundColor: "#fec5bb"
+    }
+
+    const buttonStyle ={
+      backgroundColor: "#90e0ef",
+      color: "white",
+      borderColor: "#fec5bb"
+    }
+
     let exercises = [
       { exName: "Sprint", exType: "duration" },
       { exName: "Jog", exType: "duration" },
@@ -36,41 +51,64 @@ class MenuScreen extends React.Component {
     switch (this.state.currentScreen) {
       case MENU:
         screen = (<>
-          <h2>Exercise Time!</h2>
+          <h1 style={headStyle}>Emily's Exercise App</h1>
+          <br></br>
+          <p style={{color: "#fec5bb"}}>Welcome to Emily's Exercise App! 
+          Here we are focused on fitness while having fun. Below is a specialized plan with an enjoyable watch list. 
+          We hope you enjoy!</p>
+          <br></br>
+          <h2 style={headStyle}>Workout Routine</h2>
+          <p style={{color: "#fec5bb"}}>Your workout routine!</p>
           <>
             {exercises.map((exercise) =>
               exercise.exType == "repetition" ? (
-                <button onClick={() => this.setState({ currentScreen: REPETITION, selectedItem: exercise })}>{exercise.exName}</button>
+                <button style={buttonStyle} onClick={() => this.setState({ currentScreen: REPETITION, selectedItem: exercise })}>{exercise.exName}</button>
               ) : (
-                  <button onClick={() => this.setState({ currentScreen: DURATION, selectedItem: exercise })}>{exercise.exName}</button>
+                  <button style={buttonStyle} onClick={() => this.setState({ currentScreen: DURATION, selectedItem: exercise })}>{exercise.exName}</button>
                 ) 
 
             )}
           </>
-          <h2>Exercise Watch List</h2>
-          <p>Some TV shows to watch while you work out!</p>
+          <h2 style={headStyle}>Exercise Watch List</h2>
+          <p style={{color: "#fec5bb"}}>Some TV shows to watch while you work out!</p>
           <>
               {watchlist.map((show) =>
                 show.genre == "anime" ? (
-                  <button onClick={() => this.setState({ currentScreen: ANIME, selectedItem: show })}>{show.tvname}</button>
+                  <button style={buttonStyle} onClick={() => this.setState({ currentScreen: ANIME, selectedItem: show })}>{show.tvname}</button>
                 ) : (
-                    <button onClick={() => this.setState({ currentScreen: COMEDY, selectedItem: show})}>{show.tvname}</button>
+                    <button style={buttonStyle} onClick={() => this.setState({ currentScreen: COMEDY, selectedItem: show})}>{show.tvname}</button>
                 )
                 )}
           </>
         </>)
         break
       case DURATION:
-        screen = <DurationExercise {...this.state.selectedItem}></DurationExercise>
+        screen = 
+        <>
+        <DurationExercise {...this.state.selectedItem}></DurationExercise>
+        <button style={buttonStyle} onClick={() => this.setState({currentScreen: MENU})}>Home</button>
+        </>
         break
       case REPETITION:
-        screen = <RepetitionExercise {...this.state.selectedItem}></RepetitionExercise>
+        screen = 
+        <>
+        <RepetitionExercise {...this.state.selectedItem}></RepetitionExercise>
+        <button style={buttonStyle} onClick={() => this.setState({currentScreen: MENU})}>Home</button>
+        </>
         break
       case ANIME:
-        screen = <AnimeShow {...this.state.selectedItem}></AnimeShow>
+        screen = 
+        <>
+        <AnimeShow {...this.state.selectedItem}></AnimeShow>
+        <button style={buttonStyle} onClick={() => this.setState({currentScreen: MENU})}>Home</button>
+        </>
         break
       case COMEDY:
-        screen = <ComedyShow {...this.state.selectedItem}></ComedyShow>
+        screen = 
+        <>
+        <ComedyShow {...this.state.selectedItem}></ComedyShow>
+        <button style={buttonStyle} onClick={() => this.setState({currentScreen: MENU})}>Home</button>
+        </>
         break
     }
     return screen
