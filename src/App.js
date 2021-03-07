@@ -26,10 +26,10 @@ class MenuScreen extends React.Component {
     ]
 
     let watchlist = [
-      { tvname: "Attack on Titan", genre: "anime" },
-      { tvname: "The Big Bang Theory", genre: "comedy" },
-      { tvname: "Demon Slayer", genre: "anime" },
-      { tvname: "Friends", genre: "comedy" }
+      { tvname: "Attack on Titan", genre: "anime", description: "Humanity is trapped within walled cities to protect them from the Titans. When the Titans breach the wall, will humanity be able to hang on to survival?"  },
+      { tvname: "The Big Bang Theory", genre: "comedy", description: "Four brilliant scientists making their way though experimentation, relationships, and shenanigans" },
+      { tvname: "Demon Slayer", genre: "anime", description: "Tanjiro's family has been slain by demons, and his sister turned in to one. He must fight off demons to protect his sister Nezuko and find the cure to turn her back to her human form" },
+      { tvname: "Friends", genre: "comedy", description: "A group of friends living in NYC try and navigate life with plenty of shenanigans, romance, and fun" }
     ]
 
     let screen
