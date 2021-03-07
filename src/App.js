@@ -2,10 +2,15 @@ import React from "react"
 import './App.css';
 import DurationExercise from "./components/DurationExercise";
 import RepetitionExercise from "./components/RepetitionExercise";
+import AnimeShow from "./components/AnimeShow";
+import ComedyShow from "./components/ComedyShow";
 
 const MENU = "menu"
 const DURATION = "duration"
 const REPETITION = "repetition"
+const ANIME = "anime"
+const COMEDY = "comedy"
+
 
 class MenuScreen extends React.Component {
   constructor(props) {
@@ -20,6 +25,13 @@ class MenuScreen extends React.Component {
       { exName: "Sit Ups", exType: "repetition" }
     ]
 
+    let watchlist = [
+      { tvname: "Attack on Titan", genre: "anime" },
+      { tvname: "The Big Bang Theory", genre: "comedy" },
+      { tvname: "Demon Slayer", genre: "anime" },
+      { tvname: "Friends", genre: "comedy" }
+    ]
+
     let screen
     switch (this.state.currentScreen) {
       case MENU:
@@ -31,9 +43,20 @@ class MenuScreen extends React.Component {
                 <button onClick={() => this.setState({ currentScreen: REPETITION, selectedItem: exercise })}>{exercise.exName}</button>
               ) : (
                   <button onClick={() => this.setState({ currentScreen: DURATION, selectedItem: exercise })}>{exercise.exName}</button>
-                )
+                ) 
 
             )}
+          </>
+          <h2>Exercise Watch List</h2>
+          <p>Some TV shows to watch while you work out!</p>
+          <>
+              {watchlist.map((show) =>
+                show.genre == "anime" ? (
+                  <button onClick={() => this.setState({ currentScreen: ANIME, selectedItem: show })}>{show.tvname}</button>
+                ) : (
+                    <button onClick={() => this.setState({ currentScreen: COMEDY, selectedItem: show})}>{show.tvname}</button>
+                )
+                )}
           </>
         </>)
         break
@@ -42,6 +65,12 @@ class MenuScreen extends React.Component {
         break
       case REPETITION:
         screen = <RepetitionExercise {...this.state.selectedItem}></RepetitionExercise>
+        break
+      case ANIME:
+        screen = <AnimeShow {...this.state.selectedItem}></AnimeShow>
+        break
+      case COMEDY:
+        screen = <ComedyShow {...this.state.selectedItem}></ComedyShow>
         break
     }
     return screen
